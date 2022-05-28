@@ -1,0 +1,13 @@
+This is a memory game where you need to memorize the order in which colors blink.
+
+Instructions :
+
+1. Click on "Start Game" to start the game.
+2. Try to remember the order in which colors are displayed.
+3. When the colors stop displaying, click "Ready" to test your memory.
+4. Click on the bottons one by one in the order in which you think they appeared.
+5. When you are done, click on Submit.
+6. The level increases and body color changes if you win.
+7. Else, the level becomes 1 again.
+
+"Work in progress"
