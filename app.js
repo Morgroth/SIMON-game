@@ -208,8 +208,10 @@ start.addEventListener('click',function(){
 
     //console.log('start')
     colorToggleStart('rgb(255, 255, 255)','rgb(0, 0, 0)')
+    body.style.backgroundColor='rgb(216, 191, 216)'
+    setTimeout(colorToggleStart,250,'rgb(255, 255, 255)','rgb(0, 0, 0)')
     sequenceGenerate()
-    sequenceShow()
+    setTimeout(sequenceShow,1000)
     isStart='True'
     
 
@@ -218,6 +220,7 @@ start.addEventListener('click',function(){
 ready.addEventListener('click',function(){
     //console.log('ready')
     colorToggleReady('rgb(255, 255, 255)','rgb(0, 0, 0)',)
+    setTimeout(colorToggleReady,250,'rgb(255, 255, 255)','rgb(0, 0, 0)')
     if (isStart == 'True'){
     isReady = 'True'
     ready.textContent='Begin'
@@ -232,7 +235,7 @@ green.addEventListener('click',function(){
     if (isReady =='True'){
     input.push(0)
     colorToggleGreen('rgb(144, 238, 143)','rgb(0, 255, 0)')
-    setTimeout(colorToggleGreen,500,'rgb(144, 238, 143)','rgb(0, 255, 0)')
+    setTimeout(colorToggleGreen,250,'rgb(144, 238, 143)','rgb(0, 255, 0)')
     //console.log('input: ' + input)
     //console.log(input)
 }    
@@ -243,7 +246,7 @@ red.addEventListener('click',function(){
     if (isReady =='True'){
     input.push(1)
     colorToggleRed('rgb(244, 54, 67)','rgb(255, 0, 0)')
-    setTimeout(colorToggleRed,100,'rgb(244, 54, 67)','rgb(255, 0, 0)')
+    setTimeout(colorToggleRed,250,'rgb(244, 54, 67)','rgb(255, 0, 0)')
     //console.log('input: ' + input)
 }
 })
@@ -253,7 +256,7 @@ yellow.addEventListener('click',function(){
     if (isReady =='True'){
     input.push(2)
     colorToggleYellow('rgb(255, 255, 128)','rgb(255, 255, 0)')
-    setTimeout(colorToggleYellow,500,'rgb(255, 255, 128)','rgb(255, 255, 0)')
+    setTimeout(colorToggleYellow,250,'rgb(255, 255, 128)','rgb(255, 255, 0)')
     //console.log('input: ' + input)
 }
 })
@@ -263,7 +266,7 @@ blue.addEventListener('click',function(){
     if (isReady =='True'){
     input.push(3)
     colorToggleBlue('rgb(114, 188, 212)','rgb(0, 0, 255)')
-    setTimeout(colorToggleBlue,500,'rgb(114, 188, 212)','rgb(0, 0, 255)')
+    setTimeout(colorToggleBlue,250,'rgb(114, 188, 212)','rgb(0, 0, 255)')
     //console.log('input: ' + input)
 }
 })
@@ -272,6 +275,7 @@ submit.addEventListener('click',function(){
     //console.log('submit')
     if (isSubmit =='True'){
         colorToggleSubmit('rgb(255, 255, 255)','rgb(0, 0, 0)')
+        setTimeout(colorToggleSubmit,250,'rgb(255, 255, 255)','rgb(0, 0, 0)')
         isReady='False'
         isStart='False'
         isSubmit='False'
@@ -324,10 +328,7 @@ submit.addEventListener('click',function(){
             answer=[]
         }
     }
+    ready.textContent='Ready'
     //console.log('changing colors')
-    red.style.backgroundColor='rgb(255, 0, 0)'
-    green.style.backgroundColor='rgb(0, 255, 0)'
-    blue.style.backgroundColor='rgb(0, 0, 255)'
-    yellow.style.backgroundColor='rgb(255, 255, 0)'
     //console.log('done changing colors')
 })
