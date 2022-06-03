@@ -1,7 +1,7 @@
 body{
-    background-color: rgb(216, 191, 216);
+    background-color: rgb(78, 79, 78);
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     /* align-items: center; */
     
 
@@ -11,53 +11,318 @@ body{
     display: grid;
     grid-template-columns: repeat(auto,2);
     grid-template-rows: repeat(auto,2);
-    position: absolute;
-    top: 50%;
-    transform: translate(0%,-50%);
+    flex: 1 1 auto;
 
 }
 
 .circle div{
-    width: 10em;
-    height: 10em;
+    width: 12.5em;
+    height: 12.5em;
     border: rgb(0, 0, 0);
     border-style: solid;
-    border-width: 1em;
+    border-width: 0.5em;
+    margin: 0px 0px 0px 0px;
 
     
 }
 
 .red{
-    background-color:rgb(255, 0, 0);
+    background-color:rgb(191, 46, 43);
     grid-area: 1/2/2/3;
     border-top-right-radius: 100%;
+    
+    
 
 }
 
 .yellow{
-    background-color: rgb(255, 255, 0);
+    background-color: rgb(185, 162, 8);
     grid-area: 2/1/3/2;
     border-bottom-left-radius: 100%;
 
 }
 
 .blue{
-    background-color: rgb(0, 0, 255);
+    background-color: rgb(10, 39, 129);
     grid-area: 2/2/3/3;
     border-bottom-right-radius: 100%;
 
 }
 
 .green{
-    background-color: rgb(0, 255, 0);
+    background-color: rgb(29, 161, 32);
     grid-area: 1/1/2/2;
     border-top-left-radius: 100%;
 
 }
 
-.btn,h3{
-    background-color:rgb(0, 0, 0);
-    color: rgb(255, 0, 0);
-    font-size: xx-large;
+.quarter:hover{
+    transform: scale(1.04);
 }
 
+.green:hover{
+    position: relative;
+    top: 0.25em;
+    left: 0.25em;
+
+}
+
+.red:hover{
+    position: relative;
+    top: 0.25em;
+    left: -0.25em;
+
+}
+
+.blue:hover{
+    position: relative;
+    top: -0.25em;
+    left: -0.25em;
+
+}
+
+.yellow:hover{
+    position: relative;
+    top: -0.25em;
+    left: 0.25em;
+
+}
+
+.btn,h3{
+    background-color:rgb(103, 103, 103);
+    color: rgb(255, 255, 255);
+    font-size: 5rem;
+    border: black;
+    border-style: double;
+    border-width: 0.1em;
+    border-radius: 0.1em;
+}
+
+@keyframes red-glow{
+    from {box-shadow: 0px 0px 0px 0px rgb(0, 0 ,0);}
+    to {box-shadow: 10px 10px 100px 100px rgb(255, 0, 0);}
+    
+}
+        
+    
+.red-glow{
+    animation: glow 0.25s linear 0s 2 alternate;
+}
+
+
+
+#interface{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Not working */
+    
+    flex: 1 1 auto;
+    position: relative;
+    top: -4.5em;
+
+}
+
+#home-page{
+    display:flex ;
+    flex-direction: row;
+    
+}
+
+#gap1{
+    flex: 1 1 auto;
+    width: 9em;
+   
+}
+
+#gap2{
+    flex: 1 1 auto;
+    width: 7em;
+   
+}
+
+#highscore,#sidebar{
+    flex: 1 1 auto;
+    width: 15em;
+    height: 32.5em;
+    border: black;
+    border-style: double;
+    border-width: 0.5em;
+    border-radius: 0.5em;
+    text-align: center;
+    font-size: 1.5em;
+    color: rgb(255, 255, 255);
+    background-color:rgb(103, 103, 103);
+    
+}
+
+#sidebar{
+    width: 12em;
+    font-size: 1.5em;
+    padding:0.5em 0.5em 0em 0.5em;
+}
+
+#sidebar input{
+    width: 15em;
+    height: 2em;
+    border: black;
+    border-style: solid;
+    border-width: 0.2em;
+    border-radius: 0.2em;
+    position: relative;
+    top: -2em;
+    font-size: large;
+    background-color: rgb(194, 194, 194);
+    color: rgb(255, 255, 255);
+
+}
+
+#sidebar input::placeholder{
+    color: rgb(255, 255, 255);
+    position: relative;
+    left: 1em;
+
+}
+
+#footer img{
+    width: 1.925em;
+    border-style: solid;
+    border-top-right-radius: 0.2em;
+    border-bottom-right-radius: 0.2em;
+    border:black;
+    border-style: solid;
+    border-top-width: 0.1em;
+    border-right-width: 0.1em;
+    border-bottom-width: 0.1em;
+    border-left-width: 0em;
+
+}
+
+#footer{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 2.5em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#footer .hider{
+    position: relative;
+    width: 12.5em;
+    height: 2.65em;
+    font-size: large;
+    background-color: rgb(194, 194, 194);
+    border: black;
+    border-style: solid;
+    border-width: 0.1em;
+    border-top-left-radius: 0.2em;
+    border-bottom-left-radius: 0.2em;
+}
+
+.sound-off{
+    display: none;
+}
+
+#sidebar a{
+    color: rgb(255, 255, 255);
+    font-style: normal;
+    text-decoration: none;
+    border:black;
+    border-style: solid;
+    border-width: 0.1em;
+    border-radius: 0.1em;
+    background-color: rgb(194, 194, 194);
+    padding: 0.5em;
+    position: relative;
+    top: 1em;
+}
+
+#sidebar h4+h4{
+   position: relative;
+   top: 1em;
+}
+
+
+@keyframes red-glow{
+    to {box-shadow: 0em 0em 0.5em 0.125em #FF2F12;}
+
+}
+    
+
+.blue-glow{
+    animation: blue-glow 0.25s linear 0s 2 alternate;
+}
+
+@keyframes blue-glow{
+    to {box-shadow: 0em 0px 0.5em 0.125em rgb(0, 0, 255);}
+
+}
+    
+
+.yellow-glow{
+    animation: yellow-glow 0.25s linear 0s 2 alternate;
+}
+
+@keyframes yellow-glow{
+    to {box-shadow: 0em 0px 0.5em 0.125em rgb(255, 255, 0);}
+
+}
+    
+
+.red-glow{
+    animation: red-glow 0.25s linear 0s 2 alternate;
+}
+
+@keyframes green-glow{
+    to {box-shadow: 0em 0px 0.5em 0.125em rgb(0, 255, 0);}
+
+}
+    
+
+.green-glow{
+    animation: green-glow 0.25s linear 0s 2 alternate;
+}
+
+
+.shower{
+    
+    display: none;
+    width: 5em;
+    text-orientation: mixed;
+    writing-mode: vertical-rl;
+    /*Not working*/
+    height: 20em;
+    position: fixed;
+    right: 0em;
+    top: 2.5em;
+    font-size: xx-large;
+    background-color: rgb(103, 103, 103);
+    border: black;
+    border-style: double;
+    border-width: 0.5em;
+    border-top-left-radius: 0.2em;
+    border-bottom-left-radius: 0.2em;
+    color: rgb(255, 255, 255);
+}
+
+#highscore .score{
+    font-size: 5rem;
+    visibility: hidden;
+
+
+}
+
+.anim{
+    position: absolute;
+    top: 50%;
+    left: 36%;
+    width: 7.5em;
+    height: 7.5em;
+    background-color: black;
+    border-radius: 50%;
+
+}
