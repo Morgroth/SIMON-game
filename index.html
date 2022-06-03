@@ -5,19 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="icon" href="images/favicon.jpeg">
+ 
+    <title>SIMON GAME</title>
 </head>
 <body>
-    <h3>Level <span class="level">1</span></h3>
-    <div class="circle">
-    <div class="quarter green"></div>
-    <div class="quarter red"></div>
-    <div class="quarter yellow"></div>
-    <div class="quarter blue"></div>
+    <div id="home-page">
+        <div id="highscore">
+            <h1>HIGHSCORE</h1>
+            <h1 class="score score1">LEVEL 1</h1>
+            <h1 class="score score2">LEVEL 2</h1>
+            <h1 class="score score3 ">LEVEL 3</h1>
+        </div>
+        <div id="gap1">
+        </div>
+    <div id="interface">
+        <h3>Level <span class="level">1</span></h3>
+        <div class="circle">
+            <div class="quarter green"></div>
+            <div class="quarter red"></div>
+            <div class="quarter yellow"></div>
+            <div class="quarter blue"></div>
+        </div>
+        <div class="anim"></div>
+        <br>
+        <br>
+        <div id="ctrl-btn">
+            <audio src="sound/mixkit-arcade-game-jump-coin-216.mp3" id="beep-sound"></audio>
+            <button class="btn start-btn">Start game</button>
+        </div>
     </div>
-    <button class="btn start-btn">Start game</button>
-    <button class="btn ready-btn">Ready</button>
-    <button class="btn submit-btn">Submit</button>
+    <div id="gap2">
+    </div>
+    <div id="sidebar">
+        <h1>SIGN IN</h1>
+        <h5>Sign in to load your achievements and win exciting prizes</h3>
+            <br>
+            <h5><input type="text" placeholder="Username"></h5>
+            <h5><input type="text" placeholder="Password"></h5>
+            <h2>Not Registered?</h2>
+            <h4><a href="#">  Click here to Register  </a> </h4>
+            <h4><a href="#">  Rate us on PlayStore  </a> </h4>
+            <div id="footer">
+                <button class="hider"> Hide Sidebar </button>
+                <button class="shower"> Show Sidebar </button>
+            <img src="images/Screenshot 2022-05-30 at 10.48.35 PM.jpg" alt="" class="sound-on">
+            <img src="images/Screenshot 2022-05-30 at 10.48.41 PM.jpg" alt="" class="sound-off">
+            </div>
+        </div>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
