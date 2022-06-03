@@ -1,22 +1,12 @@
-const red=document.querySelector('.red')
-const green=document.querySelector('.green')
-const yellow=document.querySelector('.yellow')
-const blue=document.querySelector('.blue')
 const start=document.querySelector('.start-btn')
-const ready=document.querySelector('.ready-btn')
-const submit=document.querySelector('.submit-btn')
 const level=document.querySelector('.level')
 const body=document.querySelector('body')
-
-const red_style=window.getComputedStyle(red)
-const green_style=window.getComputedStyle(green)
-const yellow_style=window.getComputedStyle(yellow)
-const blue_style=window.getComputedStyle(blue)
-const start_style=window.getComputedStyle(start)
-const ready_style=window.getComputedStyle(ready)
-const submit_style=window.getComputedStyle(submit)
-const level_style=window.getComputedStyle(level)
+const quarters=document.querySelectorAll('.quarter')
 const body_style=window.getComputedStyle(body)
+const hider=document.querySelector('.hider')
+const shower=document.querySelector('.shower')
+const sound_on=document.querySelector('.sound-on')
+const sound_off=document.querySelector('.sound-off')
 
 let answer = []
 
@@ -24,139 +14,38 @@ let input = []
 
 let level_value = 1
 
-let isReady='False'
-
-let isStart='False'
-
-let isSubmit='False'
-
 console.log('ATB')
 
-function colorToggleRed(color1,color2){
-    //console.log('colorToggleRed')
-    if ( red_style.getPropertyValue('background-color') == color1){
-        red.style.backgroundColor=color2
-    }
-    else if ( red_style.getPropertyValue('background-color') == color2){
-        red.style.backgroundColor=color1
-    }
-    
-    else{
-        console.log('Internal Server Error')
-    }
-}
+let count = 0
 
-function colorToggleYellow(color1,color2){
-    //console.log('colorToggleYellow')
-    if ( yellow_style.getPropertyValue('background-color') == color1){
-        yellow.style.backgroundColor=color2
-    }
-    else if ( yellow_style.getPropertyValue('background-color') == color2){
-        yellow.style.backgroundColor=color1
-    }
-    
-    else{
-        console.log('Internal Server Error')
-    }
-}
+let canClick = 'False'
 
-function colorToggleGreen(color1,color2){
-    // console.log('colorToggleGreen')
-    // console.log(color1)
-    // console.log(color2)
-    // console.log(green_style.getPropertyValue('background-color'))
-    if ( green_style.getPropertyValue('background-color') == color1){
-        green.style.backgroundColor=color2
-    }
-    else if ( green_style.getPropertyValue('background-color') == color2){
-        green.style.backgroundColor=color1
-    }
-    
-    else{
-        console.log('Internal Server Error')
-    }
-}
+let isReady = 'False'
 
-function colorToggleBlue(color1,color2){
-    //console.log('colorToggleBlue')
-    if ( blue_style.getPropertyValue('background-color') == color1){
-        blue.style.backgroundColor=color2
-    }
-    else if ( blue_style.getPropertyValue('background-color') == color2){
-        blue.style.backgroundColor=color1
-    }
-    
-    else{
-        console.log('Internal Server Error')
-    }
-}
+let colorDict={}
 
-function colorToggleStart(color1,color2){
-    //console.log('colorToggleStart')
-    if ( start_style.getPropertyValue('background-color') == color1){
-        start.style.backgroundColor=color2
-    }
-    else if ( start_style.getPropertyValue('background-color') == color2){
-        start.style.backgroundColor=color1
-    }
-    
-    else{
-        console.log('Internal Server Error')
-    }
-}
+let sound='True'
 
-function colorToggleReady(color1,color2){
-    //console.log('colorToggleReady')
-    if ( ready_style.getPropertyValue('background-color') == color1){
-        ready.style.backgroundColor=color2
-    }
-    else if ( ready_style.getPropertyValue('background-color') == color2){
-        ready.style.backgroundColor=color1
-    }
-    
-    else{
-        console.log('Internal Server Error')
-    }
-}
+let highscore=[]
 
-function colorToggleSubmit(color1,color2){
-    //console.log('colorToggleSubmit')
-    if ( submit_style.getPropertyValue('background-color') == color1){
-        submit.style.backgroundColor=color2
-    }
-    else if ( submit_style.getPropertyValue('background-color') == color2){
-        submit.style.backgroundColor=color1
-    }
-    
-    else{
-        console.log('Internal Server Error')
-    }
-}
+colorDict['.green']=['rgb(0, 255, 0)','rgb(29, 161, 32)' ]
+colorDict['.red']=['rgb(255, 0, 0)','rgb(191, 46, 43)' ]
+colorDict['.yellow']=['rgb(255, 255, 0)','rgb(185, 162, 8)' ]
+colorDict['.blue']=['rgb(0, 0, 255)','rgb(10, 39, 129)' ]
+colorDict['.start-btn']=['rgb(103, 103, 103)','rgb(194, 194, 194)']
+colorDict['.level']=['rgb(103, 103, 103)','rgb(194, 194, 194)']
 
-function colorToggleLevel(color1,color2){
-    console.log('colorToggleLevel')
-    console.log(color1)
-    console.log(color2)
-    console.log(level_style.getPropertyValue('background-color'))
-    if ( level_style.getPropertyValue('background-color') == color1){
-        level.style.backgroundColor=color2
+function colorToggle(element){
+    ele=document.querySelector(element)
+    element_style=window.getComputedStyle(ele)
+    let color = (colorDict[element])
+    let color1 = color[0]
+    let color2 = color[1]
+    if (element_style.getPropertyValue('background-color') == color1) {
+        ele.style.backgroundColor=color2
     }
-    else if ( level_style.getPropertyValue('background-color') == color2){
-        level.style.backgroundColor=color1
-    }
-    
-    else{
-        console.log('Internal Server Error')
-    }
-}
-
-function colorToggleBody(color1,color2){
-    //console.log('colorToggleBody')
-    if ( body_style.getPropertyValue('background-color') == color1){
-        body.style.backgroundColor=color2
-    }
-    else if ( body_style.getPropertyValue('background-color') == color2){
-        body.style.backgroundColor=color1
+    else if (element_style.getPropertyValue('background-color') == color2){
+        ele.style.backgroundColor=color1
     }
     
     else{
@@ -165,170 +54,264 @@ function colorToggleBody(color1,color2){
 }
 
 function sequenceGenerate(){
-    //console.log('sequenceGenerator')
     let a = Math.floor(Math.random()*4)
-    //console.log(a)
     answer.push(a)
-    console.log('answer in next line')
-    console.log(answer)
-
-    //console.log(typeof(answer))
-    //console.log(answer.length)
 }
 
 function displayColor(i){
     if (answer[i] == 0){
-        colorToggleGreen('rgb(144, 238, 143)','rgb(0, 255, 0)')
+        colorToggle('.green')
     }
     else if (answer[i] == 1){
-        colorToggleRed('rgb(244, 54, 67)','rgb(255, 0, 0)')
+        colorToggle('.red')
     }
     else if (answer[i] == 2){
-        colorToggleYellow('rgb(255, 255, 128)','rgb(255, 255, 0)')
+        colorToggle('.yellow')
     }
     else if (answer[i] == 3){
-        colorToggleBlue('rgb(114, 188, 212)','rgb(0, 0, 255)')
+        colorToggle('.blue')
     }
 }
 
 function sequenceShow(){
-    //console.log('sequenceShow')
     let i = 0
     let t = 0
     while (i<answer.length){
         setTimeout(displayColor,t,i)
-        setTimeout(displayColor,t+1000,i)
+        play()
+        setTimeout(displayColor,t+500,i)
         i++
         t+=1000
         
     }
+
+    makeReady()
+}
+
+function play() {
+    if (sound == 'True'){
+    let audio = document.getElementById("beep-sound");
+    audio.play();
+    }
+}
+
+function makeReady(){
+    isReady = 'True'
 }
 
 start.addEventListener('click',function(){
-
-    //console.log('start')
-    colorToggleStart('rgb(255, 255, 255)','rgb(0, 0, 0)')
-    body.style.backgroundColor='rgb(216, 191, 216)'
-    setTimeout(colorToggleStart,250,'rgb(255, 255, 255)','rgb(0, 0, 0)')
+    colorToggle('.start-btn')
+    setTimeout(colorToggle,500,'.start-btn')
+    if (count == 0){
+    input=[]
     sequenceGenerate()
     setTimeout(sequenceShow,1000)
-    isStart='True'
-    
+    start.textContent='Ready'    
+    count++
+    }
 
-})
+    else if (count == 1){
+        if ( isReady == 'True'){
+        start.textContent='Submit'
+        count++
+        canClick='True'
+        }
+    }
 
-ready.addEventListener('click',function(){
-    //console.log('ready')
-    colorToggleReady('rgb(255, 255, 255)','rgb(0, 0, 0)',)
-    setTimeout(colorToggleReady,250,'rgb(255, 255, 255)','rgb(0, 0, 0)')
-    if (isStart == 'True'){
-    isReady = 'True'
-    ready.textContent='Begin'
-    input=[]
-    isStart = 'False'
-    isSubmit='True'
-}
-})
-
-green.addEventListener('click',function(){
-    //console.log('green')
-    if (isReady =='True'){
-    input.push(0)
-    colorToggleGreen('rgb(144, 238, 143)','rgb(0, 255, 0)')
-    setTimeout(colorToggleGreen,250,'rgb(144, 238, 143)','rgb(0, 255, 0)')
-    //console.log('input: ' + input)
-    //console.log(input)
-}    
-})
-
-red.addEventListener('click',function(){
-    //console.log('red')
-    if (isReady =='True'){
-    input.push(1)
-    colorToggleRed('rgb(244, 54, 67)','rgb(255, 0, 0)')
-    setTimeout(colorToggleRed,250,'rgb(244, 54, 67)','rgb(255, 0, 0)')
-    //console.log('input: ' + input)
-}
-})
-
-yellow.addEventListener('click',function(){
-    //console.log('yellow')
-    if (isReady =='True'){
-    input.push(2)
-    colorToggleYellow('rgb(255, 255, 128)','rgb(255, 255, 0)')
-    setTimeout(colorToggleYellow,250,'rgb(255, 255, 128)','rgb(255, 255, 0)')
-    //console.log('input: ' + input)
-}
-})
-
-blue.addEventListener('click',function(){
-    //console.log('blue')
-    if (isReady =='True'){
-    input.push(3)
-    colorToggleBlue('rgb(114, 188, 212)','rgb(0, 0, 255)')
-    setTimeout(colorToggleBlue,250,'rgb(114, 188, 212)','rgb(0, 0, 255)')
-    //console.log('input: ' + input)
-}
-})
-
-submit.addEventListener('click',function(){
-    //console.log('submit')
-    if (isSubmit =='True'){
-        colorToggleSubmit('rgb(255, 255, 255)','rgb(0, 0, 0)')
-        setTimeout(colorToggleSubmit,250,'rgb(255, 255, 255)','rgb(0, 0, 0)')
-        isReady='False'
-        isStart='False'
-        isSubmit='False'
-        // console.log('input: ' + input)
-        // console.log('answer: ' + answer)
-        //console.log('input and answer in next line')
-        //console.log(input)
-        //console.log(answer)
-
+    else if (count == 2){
+        canClick = 'False'
+        isReady = 'False'
         if (input.length == answer.length ){
             let i = 0
             let l = input.length
             let isSame = 'False'
             while ( i < l ){
                 if (input[i] == answer[i]){
-                    //console.log('in loop')
-                    //console.log(i)
-                    i++
                     isSame = 'True'
                 }
                 else{
                     i = l
                     isSame = 'False'
                 }
+                i++
             }
-            //console.log(isSame)    
             if ( isSame == 'True' ){
-                //console.log('changing level')
                 level_value+=1
-                // console.log('level_value: ' + level_value)
-                // console.log('done changing level')
                 level.textContent=level_value
-                //console.log(level.textContent)
-                //colorToggleLevel('rgb(255, 255, 255)','rgb(0, 0, 0)')
-                //console.log('changing body color')
-                colorToggleBody('rgb(127, 0, 255)','rgb(216, 191, 216)')
-                //console.log('done body color')
             }
             else{
-                //console.log('same length')
-                level.textContent=0
-                //console.log('Bad luck')
+                level.textContent=1
                 answer=[]
+                let a=highscore.length
+                if (a == 3){
+                    let min_level = Math.min.apply(Math, highscore);
+                    if (level_value > min_level){
+                    if ( highscore[0] == min_level ){
+                        highscore.shift()
+                    }
+                    else if (highscore[2] == min_level){
+                        highscore.pop()
+                    }
+                    else{
+                        highscore=[highscore[0],highscore[2]]
+                    }   
+                }
             }
-        }
-        else{
-            //console.log('diff length')
-            level.textContent=0
-            //console.log('Bad luck')
-            answer=[]
-        }
+                highscore.push(level_value-1)
+                level_value = 1
+                highscore.sort(function(a, b){return b-a})
+                score1 = document.querySelector('.score1')
+                score2 = document.querySelector('.score2')
+                score3 = document.querySelector('.score3')
+                if ( a  >= 1 ){
+                    score1.textContent = 'Level '+highscore[0]
+                    score1.style.visibility = 'visible'
+                }
+                if ( a  >= 2 ){
+                    score2.textContent = 'Level '+highscore[1]
+                    score2.style.visibility = 'visible'
+                }
+                if ( a  == 3 ){
+                    score3.textContent = 'Level '+highscore[2]
+                    score3.style.visibility = 'visible'
+                }
+            }
     }
-    ready.textContent='Ready'
-    //console.log('changing colors')
-    //console.log('done changing colors')
+        else{
+            level.textContent=1
+            answer=[]
+            let a=highscore.length
+            if (a == 3){
+                let min_level = Math.min.apply(Math, highscore);
+                if (level_value > min_level){
+                if ( highscore[0] == min_level ){
+                    highscore.shift()
+                }
+                else if (highscore[2] == min_level){
+                    highscore.pop()
+                }
+                else{
+                    highscore=[highscore[0],highscore[2]]
+                }
+                }
+            }
+                highscore.push(level_value-1)
+                level_value = 1
+                highscore.sort(function(a, b){return b-a})
+                score1 = document.querySelector('.score1')
+                score2 = document.querySelector('.score2')
+                score3 = document.querySelector('.score3')
+                if ( a  >= 1 ){
+                    console.log('path1')
+                    score1.textContent = 'Level '+highscore[0]
+                    score1.style.visibility = 'visible'
+                }
+                if ( a  >= 2 ){
+                    console.log('path2')
+                    score2.textContent = 'Level '+highscore[1]
+                    score2.style.visibility = 'visible'
+                }
+                if ( a  == 3 ){
+                    console.log('path3')
+                    score3.textContent = 'Level '+highscore[2]
+                    score3.style.visibility = 'visible'
+                }
+        }
+    start.textContent='Start game'
+    count=0
+
+    }}
+)
+
+
+
+function quarterAnim(element){
+    colorToggle(element)
+    ele=document.querySelector(element)
+    if (element == '.red'){
+    ele.classList.remove('red-glow'); 
+    void ele.offsetWidth;-
+    ele.classList.add('red-glow'); 
+    }
+    else if (element == '.green'){
+        ele.classList.remove('green-glow'); 
+        void ele.offsetWidth; 
+        ele.classList.add('green-glow'); 
+        }
+    else if (element == '.blue'){
+    ele.classList.remove('blue-glow'); 
+    void ele.offsetWidth; 
+    ele.classList.add('blue-glow'); 
+    } 
+    else if (element == '.yellow'){
+        ele.classList.remove('yellow-glow'); 
+        void ele.offsetWidth; 
+        ele.classList.add('yellow-glow'); 
+    }
+    setTimeout(colorToggle,500,element)
+}
+    
+quarters.forEach(function (quarter) {
+    quarter.addEventListener("click", function (e) {
+        if (canClick == 'True'){
+      const styles = e.currentTarget.classList;
+      play()
+      if (styles.contains("green")) {
+        quarterAnim('.green')
+        input.push(0)
+      }
+      else if (styles.contains("red")) {
+        quarterAnim('.red')
+        input.push(1)
+      }
+      else if (styles.contains("yellow")) {
+        quarterAnim('.yellow')
+        input.push(2)
+      }
+      else if (styles.contains("blue")) {
+        quarterAnim('.blue')
+        input.push(3)
+      }
+    }
+    })
 })
+  
+hider.addEventListener('click',function(){
+    document.querySelector('#sidebar').style.visibility='hidden'
+    document.querySelector('.shower').style.display='block'
+    document.querySelector('.shower').style.visibility='visible'
+
+})
+
+shower.addEventListener('click',function(){
+    document.querySelector('#sidebar').style.visibility='visible'
+    document.querySelector('.shower').style.display='none'
+
+})
+
+sound_on.addEventListener('click',function(){
+    sound_on.style.display='none'
+    sound_off.style.display='block'
+    sound='False'
+
+})
+
+sound_off.addEventListener('click',function(){
+    sound_on.style.display='block'
+    sound_off.style.display='none'
+    sound='True'
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
